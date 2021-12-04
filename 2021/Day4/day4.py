@@ -61,13 +61,13 @@ class Game:
 
     def __init__(self, rnd_seq, boards):
         self._rnd_seq = rnd_seq
-        self._boards = []
+        self.boards = []
         for b in boards:
-            self._boards.append(Board(b))
+            self.boards.append(Board(b))
 
     def play(self):
         for num in self._rnd_seq:
-            for b in self._boards:
+            for b in self.boards:
                 b.mark(num)
                 if b.wins():
                     return b, b.get_score(num)
@@ -76,10 +76,10 @@ rnd_num, boards = get_input()
 bingo = Game(rnd_num, boards)
 first_score = 0
 last_score = 0
-while len(bingo._boards) > 0:
+while len(bingo.boards) > 0:
     b, last_score = bingo.play()
     if first_score == 0:
         first_score = last_score
-    bingo._boards.remove(b)
+    bingo.boards.remove(b)
 print('First score (part 1):', first_score)
 print('Last score (part 2):', last_score)
