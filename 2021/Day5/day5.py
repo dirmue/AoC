@@ -36,7 +36,7 @@ class Line:
             return True
         return False
 
-    def get_points(self, stepping=1):
+    def get_points(self):
         p = []
         if self.is_vertical():
             if self.coords['y1'] < self.coords['y2']:
@@ -100,7 +100,6 @@ for i in range(len(lines)):
         common = points_i & points_j
         for p in common:
             if p not in all_intersections:
-                print('adding', p)
                 all_intersections.append(p)
 
 print('\nsolution:', len(all_intersections))
