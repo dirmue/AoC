@@ -30,57 +30,24 @@ class Line:
     def is_diagonal(self):
         return abs((self.coords['x2'] - self.coords['x1']) / (self.coords['y2'] - self.coords['y1'])) == 1
 
-
-    def is_identical(self, l):
-        if self.m == l.m and self.b == l.b:
-            return True
-        return False
-
     def get_points(self):
         p = []
         if self.is_vertical():
-            if self.coords['y1'] < self.coords['y2']:
-                y = self.coords['y1']
-                while y <= self.coords['y2']:
-                    p.append((self.coords['x1'], y))
-                    y += 1
-            else:
-                y = self.coords['y2']
-                while y <= self.coords['y1']:
-                    p.append((self.coords['x1'], y))
-                    y += 1
+            y_min = min(self.coords['y1'], self.coords['y2'])
+            y_max = max(self.coords['y1'], self.coords['y2'])
+            y_coords = [y for y in range(y_min, y_max + 1)]
+            p = list(zip([self.coords['x1']] * len(y_coords), y_coords))
         elif self.is_horizontal():
-            if self.coords['x1'] < self.coords['x2']:
-                x = self.coords['x1']
-                while x <= self.coords['x2']:
-                    p.append((x, self.coords['y1']))
-                    x += 1
-            else:
-                x = self.coords['x2']
-                while x <= self.coords['x1']:
-                    p.append((x, self.coords['y1']))
-                    x += 1
+            x_min = min(self.coords['x1'], self.coords['x2'])
+            x_max = max(self.coords['x1'], self.coords['x2'])
+            x_coords = [x for x in range(x_min, x_max + 1)]
+            p = list(zip(x_coords, [self.coords['y1']] * len(x_coords)))
         elif self.is_diagonal():
-            if self.coords['x1'] < self.coords['x2']:
-                x = self.coords['x1']
-                y = self.coords['y1']
-                ystep = 1
-                if y > self.coords['y2']:
-                    ystep = -1
-                while x <= self.coords['x2']:
-                    p.append((x, y))
-                    x += 1
-                    y += ystep
-            else:
-                x = self.coords['x2']
-                y = self.coords['y2']
-                ystep = 1
-                if y > self.coords['y1']:
-                    ystep = -1
-                while x <= self.coords['x1']:
-                    p.append((x, y))
-                    x += 1
-                    y += ystep
+            x_step = -1 if self.coords['x1'] > self.coords['x2'] else 1
+            y_step = -1 if self.coords['y1'] > self.coords['y2'] else 1
+            x_coords = [x for x in range(self.coords['x1'], self.coords['x2'] + x_step, x_step)]
+            y_coords = [y for y in range(self.coords['y1'], self.coords['y2'] + y_step, y_step)]
+            p = list(zip(x_coords, y_coords))
         return p
 
 
