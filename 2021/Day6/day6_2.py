@@ -9,7 +9,6 @@ def get_input():
 
 def get_spawn_days(days, vstart, dstart=0):
     sday = vstart + dstart + 1
-    loop = 0
     result = []
     while sday <= days:
         result.append(sday)
@@ -36,6 +35,7 @@ for f in data:
 
 for nextd in spawn_days:
     sd = get_spawn_days(num_days, 8, nextd)
+    print(sd)
     for val in sd:
         if not val in spawn_days:
             spawn_days.append(val)
