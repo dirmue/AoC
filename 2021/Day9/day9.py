@@ -12,7 +12,6 @@ covered = []
 data = get_input()
 lmax = len(data)
 dmax = len(data[0])
-vdata = [''] * dmax
 risk_levels = 0
 
 for lindex, line in enumerate(data):
