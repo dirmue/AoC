@@ -16,7 +16,6 @@ risk_levels = 0
 
 for lindex, line in enumerate(data):
     for dindex, digit in enumerate(line):
-        vdata[dindex] += digit
         conditions = []
         if dindex - 1 >= 0:
             conditions.append(digit < line[dindex-1])
