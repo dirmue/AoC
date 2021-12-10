@@ -52,4 +52,4 @@ for line in data:
     if totalscore > 0:
         scores.append(totalscore)
 scores.sort()
-print(scores[len(scores)//2])
+print('part 2:', scores[len(scores)//2])
