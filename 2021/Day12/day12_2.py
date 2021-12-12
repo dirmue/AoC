@@ -14,9 +14,7 @@ all_small_caves = set()
 all_paths = []
 
 def is_small(c):
-    if re.findall('[a-z]+', c):
-        return True
-    return False
+    return c.islower()
 
 def find_path(path=['start'], visited=set(), twice=''): 
     for next_cave in caves[path[len(path)-1]]:

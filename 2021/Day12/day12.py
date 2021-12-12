@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import re
 from copy import copy
 
 def get_input():
@@ -13,9 +12,7 @@ caves = {}
 all_paths = []
 
 def is_small(c):
-    if re.findall('[a-z]+', c):
-        return True
-    return False
+    return c.islower()
 
 def find_path(path=['start'], visited=set()): 
     for next_cave in caves[path[len(path)-1]]:
