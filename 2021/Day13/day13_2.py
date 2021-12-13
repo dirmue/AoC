@@ -38,7 +38,6 @@ sheet, fold_instr = get_input()
 for fi in fold_instr:
     sheet = fold(sheet, fi)
 
-print(sheet)
 xmax = 0
 ymax = 0
 for p in sheet:
